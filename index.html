@@ -292,26 +292,26 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option value="" disabled selected>Program Interest</option>
-                                <option>Fundamentals Mastery</option>
-                                <option>Adobe Creative Suite</option>
-                                <option>Brand Systems</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Goals & Questions" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-button primary">Request Consultation</button>
-                    </form>
+                 <form id="contactForm" action="https://formspree.io/f/mdkgbjqk" method="POST">
+                  <div class="form-group">
+                   <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                 <input type="email" name="_replyto" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                 <select name="program" required>
+                  <option value="" disabled selected>Program Interest</option>
+                   <option>Fundamentals Mastery</option>
+                    <option>Adobe Creative Suite</option>
+                     <option>Brand Systems</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                 <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button primary">Request Consultation</button>
+                </form>
                 </div>
             </div>
         </div>
@@ -364,7 +364,15 @@
             </div>
         </div>
     </footer>
-
+<form id="contactForm">
+  <input type="text" name="name" placeholder="Full Name" required>
+  <input type="email" name="email" placeholder="Email Address" required>
+  <select name="program" required>
+    <!-- options -->
+  </select>
+  <textarea name="message" required></textarea>
+  <button type="submit">Submit</button>
+</form>
     <script src="script.js"></script>
 </body>
 </html>

@@ -96,13 +96,46 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form submission handler
 const contactForm = document.getElementById('contactForm');
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        alert('Thank you for your message! We will contact you soon.');
-        contactForm.reset();
+        
+        // Basic email validation
+        const email = contactForm.querySelector('input[type="email"]').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+        
+        const formData = new FormData(contactForm);
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                alert('Thank you for your message! We will contact you soon.');
+                contactForm.reset();
+            } else {
+                alert('There was an error submitting the form. Please try again.');
+            }
+        } catch (error) {
+            alert('Network error. Please check your connection and try again.');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Request Consultation';
+        }
     });
 }
 
@@ -135,3 +168,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('scroll', checkScroll);
+
